@@ -58,6 +58,7 @@ Tech debt / improvements list for this project
 
 - Improve User experience.
 - The Carousel component has a lot of room to improve. But as the first version we can validate the idea and improve as it goes.
+- It has only the base scructural css, missing some beautiful styling
 
 ## Author
 **Alga Leal (4lg4)**
