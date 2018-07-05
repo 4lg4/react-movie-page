@@ -3,11 +3,18 @@
   display: flex;
 }
 
-.carousel__content {
+.carousel__container {
   overflow: auto;
   white-space: nowrap;
   padding: 0 2px;
   flex-grow: 1;
+  position: relative;
+}
+
+.carousel__container__rail {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .carousel .movie-poster {
