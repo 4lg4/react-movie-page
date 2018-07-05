@@ -1,6 +1,33 @@
-
 .carousel {
   width: 100%;
+  display: flex;
+}
+
+.carousel__content {
   overflow: auto;
   white-space: nowrap;
+  padding: 0 2px;
+  flex-grow: 1;
+}
+
+.carousel .movie-poster {
+  width: 200px;
+  height: 297px;
+  margin: 0 2px;
+}
+
+.carousel__nav-right {
+  height: 297px;
+  background-color: skyblue;
+  padding: 10px;
+  line-height: 297px;
+  cursor: pointer;
+}
+
+.carousel__nav-left {
+  height: 297px;
+  background-color: skyblue;
+  padding: 10px;
+  line-height: 297px;
+  cursor: pointer;
 }

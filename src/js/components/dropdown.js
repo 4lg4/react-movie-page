@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../scss/components/dropdown.scss';
 
-const Dropdown = ({items}) => {
-  console.log(items);
+const Dropdown = ({items, placeholder, onSelect}) => {
   return (
-    <select>
+    <select onChange={(evt)=>onSelect(evt.target.value)} className="dropdown">
+      <option value="" disabled hidden>{placeholder}</option>
       {items.map((item, i) =>
         <option key={i} value={item.value}>{item.text}</option>
       )}
@@ -14,7 +14,9 @@ const Dropdown = ({items}) => {
 };
 
 Dropdown.propTypes = {
+  placeholder: PropTypes.string.isRequired,
   items: PropTypes.array.isRequired,
+  onSelect: PropTypes.func,
 };
 
 export default Dropdown;
