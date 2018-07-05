@@ -15,7 +15,7 @@
 
 ### Manual installation
 
-Make sure that you are using the NodeJS version is the same as `.nvmrc` file version. If you don't have this version please use a version manager such as `nvm` or `n` to manage your local nodejs versions.
+Make sure your NodeJS version is matching `.nvmrc` file. If you don't have this version please use a version manager such as `nvm` or `n` to manage your local nodejs versions.
 
 > Please make sure that you are using the correct NodeJS version :)
 Assuming you are using `nvm`, please run the commands on the project folder:
