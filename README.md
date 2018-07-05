@@ -43,14 +43,20 @@ $ choco install nodejs.install -version v8.9.4
 ```
 
 ## Test
-````bash
+```bash
     npm run test
-````
+```
+
+## Dev
+```bash
+    npm run dev
+    npm run watch # used together with development for TDD.
+```
 
 ## Build
-````bash
+```bash
     npm run build
-````
+```
 
 ## Improvements
 
