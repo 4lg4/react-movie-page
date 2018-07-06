@@ -20,7 +20,10 @@ class Carousel extends Component {
     this.props.onSelect(item);
   }
 
-  componentDidUpdate() {
+  componentWillReceiveProps(nextProps) {
+    if (this.movieContainerRail.current) {
+      this.movieContainerRail.current.style.left = '0px';
+    }
   }
 
   handleScrollTo(direction) {
@@ -47,7 +50,7 @@ class Carousel extends Component {
   render() {
     const {items} = this.props;
 
-    if (!items) {
+    if (!items || items.length === 0) {
       return <LoadingContent />;
     }
 
