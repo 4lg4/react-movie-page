@@ -2,6 +2,8 @@
 
 > Challenge React Movie Page, create a movie page to display a carousel of posters and movie details with filtering by genre
 
+[Task requeriments](README-REQUIREMENTS.md)
+
 ## Frameworks, Libraries and Tools
 
 - NPM. dependency manager;
