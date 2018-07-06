@@ -20,8 +20,8 @@ class Carousel extends Component {
     this.props.onSelect(item);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.movieContainerRail.current) {
+  componentWillReceiveProps(nextProps, a) {
+    if (this.movieContainerRail.current && (this.props.items.join(',') !== nextProps.items.join(','))) {
       this.movieContainerRail.current.style.left = '0px';
     }
   }
