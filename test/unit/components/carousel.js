@@ -27,7 +27,7 @@ describe('Carousel - carousel.js', () => {
   });
 
   it('should render the content children', () => {
-    wrapper.find('.carousel__content').props().children.forEach((movie, i) =>
+    wrapper.find('.carousel__container__rail').props().children.forEach((movie, i) =>
       expect(movie.props.image).to.eql(movies[i].Poster)
     );
   });
