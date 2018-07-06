@@ -21,46 +21,26 @@ class Carousel extends Component {
   }
 
   componentDidUpdate() {
-    this.movieContainer.current.scrollLeft = 0;
-
-    const movieContainer = this.movieContainer.current;
-    const movieContainerRail = this.movieContainerRail.current;
-    console.log('componentDidUpdate ', movieContainer.offsetWidth, movieContainerRail.style.left, movieContainerRail.offsetWidth);
-  }
-
-  componentDidMount() {
-    const movieContainer = this.movieContainer.current;
-    const movieContainerRail = this.movieContainerRail.current;
-    console.log('componentDidMount ', movieContainer.offsetWidth, movieContainerRail.style.left, movieContainerRail.offsetWidth);
   }
 
   handleScrollTo(direction) {
     const movieContainer = this.movieContainer.current;
     const movieContainerRail = this.movieContainerRail.current;
 
-    // console.log(this.movieContainerRail);
-    // console.log(movieContainerRail);
-    console.log(movieContainer.offsetWidth, movieContainerRail.style.left, movieContainerRail.offsetWidth);
-    // console.log(movieContainerRail.style.left += movieContainer.offsetWidth);
-    const left = (movieContainerRail.style.left) ? parseInt(movieContainerRail.style.left.replace('px', '')) : 0;
     if (direction === 'R') {
-      // console.log(left + movieContainer.offsetWidth);
-      // console.log(movieContainerRail.offsetWidth, left - movieContainer.offsetWidth, (Math.abs(left - movieContainer.offsetWidth) >= (movieContainerRail.offsetWidth - movieContainer.offsetWidth)));
-      if (Math.abs(left - movieContainer.offsetWidth) >= (movieContainerRail.offsetWidth - movieContainer.offsetWidth)) {
-        movieContainerRail.style.left = `auto`;
-        movieContainerRail.style.right = `0px`;
-      } else {
-        movieContainerRail.style.right = `auto`;
-        movieContainerRail.style.right = `${left - movieContainer.offsetWidth}px`;
+      const left = (movieContainerRail.style.left) ? parseInt(movieContainerRail.style.left.replace('px', '')) : - 1;
+      if ((Math.abs(left) + movieContainer.offsetWidth) >= movieContainerRail.offsetWidth) {
+        return true;
       }
-      console.log('scroll R', scroll);
-      movieContainerRail.style.left = `${scroll}px`;
-      // movieContainer.scrollLeft += movieContainer.offsetWidth;
+
+      movieContainerRail.style.left = `${left - movieContainer.offsetWidth}px`;
     } else {
-      console.log(left + movieContainer.offsetWidth, (Math.abs(left + movieContainer.offsetWidth) >= movieContainerRail.offsetWidth));
-      const scroll = (Math.abs(left + movieContainer.offsetWidth) >= movieContainerRail.offsetWidth) ? movieContainerRail.offsetWidth : (left + movieContainer.offsetWidth);
-      movieContainerRail.style.left = `${scroll}px`;
-      // movieContainer.scrollLeft -= movieContainer.offsetWidth;
+      const left = (movieContainerRail.style.left) ? parseInt(movieContainerRail.style.left.replace('px', '')) : 0;
+      if (!movieContainerRail.style.left || left >= 0) {
+        return true;
+      }
+
+      movieContainerRail.style.left = `${left + movieContainer.offsetWidth}px`;
     }
   }
 
