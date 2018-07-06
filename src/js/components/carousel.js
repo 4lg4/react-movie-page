@@ -11,6 +11,7 @@ class Carousel extends Component {
     this.state = {};
 
     this.movieContainer = React.createRef();
+    this.movieContainerRail = React.createRef();
     this.handleOnSelect = this.handleOnSelect.bind(this);
     this.handleScrollTo = this.handleScrollTo.bind(this);
   }
@@ -20,16 +21,26 @@ class Carousel extends Component {
   }
 
   componentDidUpdate() {
-    this.movieContainer.current.scrollLeft = 0;
   }
 
   handleScrollTo(direction) {
     const movieContainer = this.movieContainer.current;
+    const movieContainerRail = this.movieContainerRail.current;
 
     if (direction === 'R') {
-      movieContainer.scrollLeft += movieContainer.offsetWidth;
+      const left = (movieContainerRail.style.left) ? parseInt(movieContainerRail.style.left.replace('px', '')) : - 1;
+      if ((Math.abs(left) + movieContainer.offsetWidth) >= movieContainerRail.offsetWidth) {
+        return true;
+      }
+
+      movieContainerRail.style.left = `${left - movieContainer.offsetWidth}px`;
     } else {
-      movieContainer.scrollLeft -= movieContainer.offsetWidth;
+      const left = (movieContainerRail.style.left) ? parseInt(movieContainerRail.style.left.replace('px', '')) : 0;
+      if (!movieContainerRail.style.left || left >= 0) {
+        return true;
+      }
+
+      movieContainerRail.style.left = `${left + movieContainer.offsetWidth}px`;
     }
   }
 
@@ -43,10 +54,12 @@ class Carousel extends Component {
     return (
       <div className="carousel">
         <div className="carousel__nav-left" onClick={()=> this.handleScrollTo('L')}>L</div>
-        <div className="carousel__content" ref={this.movieContainer}>
-          {items.map((item, i) =>
-            <MoviePoster key={i} image={item.Poster} onClick={()=> this.handleOnSelect(item)} />
-          )}
+        <div className="carousel__container" ref={this.movieContainer}>
+          <div className="carousel__container__rail" ref={this.movieContainerRail}>
+            {items.map((item, i) =>
+              <MoviePoster key={i} image={item.Poster} onClick={()=> this.handleOnSelect(item)} />
+            )}
+          </div>
         </div>
         <div className="carousel__nav-right" onClick={()=> this.handleScrollTo('R')}>R</div>
       </div>
